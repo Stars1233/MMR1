@@ -65,6 +65,7 @@ We also include results on the MathVerse_MINI_Vision_Only_cot (MathVerse_V) subs
 | **Open-sourced** | | | | | | |
 | [Ovis2-8b](https://github.com/AIDC-AI/Ovis) | 8B | 71.8 | 25.9 | 39.4 | 42.3 | - |
 | [MiniCPM-o-2.6](https://github.com/OpenBMB/MiniCPM-o) | 8B | **71.9** | 21.7 | 36.0 | 35.0 | - |
+| [VITA-1.5](https://github.com/VITA-MLLM/VITA) | 7B | 66.2 | 19.5 | 38.9 | - | 23.4 |
 | [Qwen2.5-VL](https://github.com/QwenLM/Qwen2.5-VL) (official) | 7B | 68.2 | 25.4 | 47.9 | 41.1 | - |
 | [Qwen2.5-VL](https://github.com/QwenLM/Qwen2.5-VL) (reproduced) | 7B | 67.5 | 25.6 | 46.8 | 42.5 | 46.9 |
 | **Ours** | | | | | | |
