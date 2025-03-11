@@ -81,10 +81,10 @@ To further examine the effectiveness of GRPO, we perform ablation experiments by
 
 
 ## 🏫 Project Zoo
-| Project | Latest Model | Data | Link |
-|-----------|--------------|-----|-----------|
-| MMR1-Math | MMR1-Math-v0 [7b](https://huggingface.co/MMR1/MMR1-Math-v0-7B) | [![hf_space](https://img.shields.io/badge/🤗-data-9C276A.svg)](https://huggingface.co/datasets/MMR1/MMR1-Math-RL-Data-v0) | [🔗](https://github.com/LengSicong/MMR1/tree/main/MMR1-Math) |
-| MMR1-Science (coming soon!)| | | |
+| Project | Latest Model | Checkpoints | Data | Link |
+|-----------|--------------|-------|-----|-----------|
+| MMR1-Math | MMR1-Math-v0 | [![hf_space](https://img.shields.io/badge/🤗-7B-9C276A.svg)](https://huggingface.co/MMR1/MMR1-Math-v0-7B) | [![hf_space](https://img.shields.io/badge/🤗-data-9C276A.svg)](https://huggingface.co/datasets/MMR1/MMR1-Math-RL-Data-v0) | [🔗](https://github.com/LengSicong/MMR1/tree/main/MMR1-Math) |
+| MMR1-Science (coming soon!)| | | | |
 
 
 ## 💪 TODO
