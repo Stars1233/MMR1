@@ -262,7 +262,7 @@ If you find MMR1 useful for your research and applications, please cite using th
 ```bibtex
 @misc{MMR1-Math2025,
   title={MMR1: Advancing the Frontiers of Multimodal Reasoning},
-  author={Sicong Leng*, Jing Wang*, Jiaxi Li*, Hao Zhang*, Zhiqiang Hu, Boqiang Zhang, Hang Zhang, Yuming Jiang, Xin Li, Fan Wang, Yu Rong, Aixin Sun†, Shijian Lu†},
+  author={Sicong Leng*, Jing Wang*, Jiaxi Li*, Hao Zhang*, Zhiqiang Hu, Boqiang Zhang, Hang Zhang, Yuming Jiang, Xin Li, Deli Zhao, Fan Wang, Yu Rong, Aixin Sun†, Shijian Lu†},
   year={2025},
   howpublished={\url{https://github.com/LengSicong/MMR1}},
 }
