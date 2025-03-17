@@ -48,7 +48,7 @@ We evaluated our model using [VLMEvalKit](https://github.com/open-compass/VLMEva
 
 We also include results on the MathVerse_MINI_Vision_Only_cot (MathVerse_V) subset to maintain consistency with the VLMEvalKit leaderboard. The table below compares our model's performance against various open-source and proprietary models.
 
-| Model | size | MathVista | MathVision | LogicVista | MathVerse | MathVerse_V |
+| Model | size | MathVista | MathVision | LogicVista | MathVerse_V | MathVerse |
 |-------|:----:|:--------------:|:----------:|:----------:|:--------------:|:-------------------:|
 | **Close-sourced** | | | | | | |
 | [GPT-4o 1120](https://openai.com/index/gpt-4o-system-card/)  | - | 60.0 | 31.2 | 52.8 | 40.6 | - |
