@@ -11,10 +11,6 @@ MMR1: Enhancing Multimodal Reasoning with Variance-Aware Sampling and Open Resou
 
 [![hf_data](https://img.shields.io/badge/🤗-Dataset-9C276A.svg)](https://huggingface.co/MMR1/datasets)
 [![hf_checkpoint](https://img.shields.io/badge/🤗-Checkpoints-9C276A.svg)](https://huggingface.co/MMR1/models) 
-[![License](https://img.shields.io/badge/License-Apache%202.0-yellow)](https://github.com/LengSicong/MMR1/blob/main/LICENSE) <br>
-[![Hits](https://hits.seeyoufarm.com/api/count/incr/badge.svg?url=https%3A%2F%2Fgithub.com%2FLengSicong%2FMMR1&count_bg=%2379C83D&title_bg=%23555555&icon=&icon_color=%23E7E7E7&title=Visitor&edge_flat=false)](https://hits.seeyoufarm.com)
-[![GitHub issues](https://img.shields.io/github/issues/LengSicong/MMR1?color=critical&label=Issues)](https://github.com/LengSicong/MMR1/issues?q=is%3Aopen+is%3Aissue)
-[![GitHub closed issues](https://img.shields.io/github/issues-closed/LengSicong/MMR1?color=success&label=Issues)](https://github.com/LengSicong/MMR1/issues?q=is%3Aissue+is%3Aclosed) 
 [![hf_paper](https://img.shields.io/badge/🤗-Paper%20In%20HF-red.svg)](https://huggingface.co/papers/)
 [![arXiv](https://img.shields.io/badge/Arxiv-xxx-AD1C18.svg?logo=arXiv)](https://arxiv.org/)
 <br>
