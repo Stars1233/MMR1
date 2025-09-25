@@ -102,8 +102,8 @@ We evaluate our models on a suite of **mathematics-related multimodal reasoning 
 <img src="assets/result.png" alt="result" width="700"/>
 </p>
 
-- **MMR1-7B** achieves an average score of **58.4**, establishing new state-of-the-art performance among 7B-scale reasoning models.  
-- **MMR1-3B** performs competitively with **52.7**, showing strong reasoning ability even at smaller scale.  
+- **MMR1-7B-RL** achieves an average score of **58.4**, establishing new state-of-the-art performance among 7B-scale reasoning models.  
+- **MMR1-3B-RL** performs competitively with **52.7**, showing strong reasoning ability even at smaller scale.  
 - Our models consistently outperform or match larger baselines, demonstrating the effectiveness of **Variance-Aware Sampling (VAS)** and our curated **long CoT training data**.  
 
 ## 🔍 Analysis of VAS Training Dynamics  
