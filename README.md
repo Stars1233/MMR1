@@ -81,14 +81,14 @@ By adaptively steering training toward prompts with higher reward variance, VAS 
 ## 📦 Open Resources
 
 We release the following resources for the community:
-- [![hf_data](https://img.shields.io/badge/🤗-Dataset-9C276A.svg)](https://huggingface.co/datasets/MMR1/MMR1-SFT)**MMR1-SFT (~16M):**  Supervised fine-tuning dataset with 16M long CoT cold-start trajectories (Gemini2.5 Pro/Flash) with verified short answer (GPT-4o) 
-- [![hf_data](https://img.shields.io/badge/🤗-Dataset-9C276A.svg)](https://huggingface.co/datasets/MMR1/MMR1-RL)**MMR1-RL (15k):** RL dataset with 15k question-answer pairs (GPT-4o)
-- [![hf_checkpoint](https://img.shields.io/badge/🤗-Checkpoints-9C276A.svg)](https://huggingface.co/MMR1/MMR1-3B-SFT)**MMR1-3B-SFT:** 3B checkpoint trained with MMR1-SFT
-- [![hf_checkpoint](https://img.shields.io/badge/🤗-Checkpoints-9C276A.svg)](https://huggingface.co/MMR1/MMR1-3B-RL)**MMR1-3B-RL:** 3B checkpoint trained with MMR1-SFT and MMR1-RL
-- [![hf_checkpoint](https://img.shields.io/badge/🤗-Checkpoints-9C276A.svg)](https://huggingface.co/MMR1/MMR1-7B-SFT)**MMR1-7B-SFT:** 7B checkpoint trained with MMR1-SFT
-- [![hf_checkpoint](https://img.shields.io/badge/🤗-Checkpoints-9C276A.svg)](https://huggingface.co/MMR1/MMR1-7B-RL)**MMR1-7B-RL:** 7B checkpoint trained with MMR1-SFT and MMR1-RL
-- [![hf_checkpoint](https://img.shields.io/badge/🤗-Checkpoints-9C276A.svg)](https://huggingface.co/MMR1/MMR1-32B-SFT)**MMR1-32B-SFT:** 32B checkpoint trained with MMR1-SFT
-- [![hf_checkpoint](https://img.shields.io/badge/🤗-Checkpoints-9C276A.svg)](https://huggingface.co/MMR1/MMR1-232B-RL)**MMR1-32B-RL:** 32B checkpoint trained with MMR1-SFT and MMR1-RL (On the way!)
+- **[MMR1-SFT](https://huggingface.co/datasets/MMR1/MMR1-SFT) (~16M):**  Supervised fine-tuning dataset with 16M long CoT cold-start trajectories (Gemini2.5 Pro/Flash) with verified short answer (GPT-4o) 
+- **[MMR1-RL](https://huggingface.co/datasets/MMR1/MMR1-RL) (15k):** RL dataset with 15k question-answer pairs (GPT-4o)
+- **[MMR1-3B-SFT](https://huggingface.co/MMR1/MMR1-3B-SFT):** 3B checkpoint trained with MMR1-SFT
+- **[MMR1-3B-RL](https://huggingface.co/MMR1/MMR1-3B-RL):** 3B checkpoint trained with MMR1-SFT and MMR1-RL
+- **[MMR1-7B-SFT](https://huggingface.co/MMR1/MMR1-7B-SFT):** 7B checkpoint trained with MMR1-SFT
+- **[MMR1-7B-RL](https://huggingface.co/MMR1/MMR1-7B-RL):** 7B checkpoint trained with MMR1-SFT and MMR1-RL
+- **[MMR1-32B-SFT](https://huggingface.co/MMR1/MMR1-32B-SFT):** 32B checkpoint trained with MMR1-SFT
+- **[MMR1-32B-RL](https://huggingface.co/MMR1/MMR1-32B-RL):** 32B checkpoint trained with MMR1-SFT and MMR1-RL (On the way!)
 
 
 <p align="center">
