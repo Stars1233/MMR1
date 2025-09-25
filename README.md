@@ -3,7 +3,7 @@
 <p>
 
 <h3 align="center"><a href="https://arxiv.org/" style="color:#9C276A">
-MMR1: Advancing the Frontiers of Multimodal Reasoning</a></h3>
+MMR1: Enhancing Multimodal Reasoning with Variance-Aware Sampling and Open Resources</a></h3>
 <h5 align="center"> If our project helps you, please give us a star ⭐ on GitHub to support us. 🙏🙏 </h2>
 
 
@@ -14,208 +14,132 @@ MMR1: Advancing the Frontiers of Multimodal Reasoning</a></h3>
 [![License](https://img.shields.io/badge/License-Apache%202.0-yellow)](https://github.com/LengSicong/MMR1/blob/main/LICENSE) <br>
 [![Hits](https://hits.seeyoufarm.com/api/count/incr/badge.svg?url=https%3A%2F%2Fgithub.com%2FLengSicong%2FMMR1&count_bg=%2379C83D&title_bg=%23555555&icon=&icon_color=%23E7E7E7&title=Visitor&edge_flat=false)](https://hits.seeyoufarm.com)
 [![GitHub issues](https://img.shields.io/github/issues/LengSicong/MMR1?color=critical&label=Issues)](https://github.com/LengSicong/MMR1/issues?q=is%3Aopen+is%3Aissue)
-[![GitHub closed issues](https://img.shields.io/github/issues-closed/LengSicong/MMR1?color=success&label=Issues)](https://github.com/LengSicong/MMR1/issues?q=is%3Aissue+is%3Aclosed)  <br>
-<!-- [![hf_paper](https://img.shields.io/badge/🤗-Paper%20In%20HF-red.svg)](https://huggingface.co/papers/)
-[![arXiv](https://img.shields.io/badge/Arxiv-xxx-AD1C18.svg?logo=arXiv)](https://arxiv.org/)  -->
-</h5>
-
+[![GitHub closed issues](https://img.shields.io/github/issues-closed/LengSicong/MMR1?color=success&label=Issues)](https://github.com/LengSicong/MMR1/issues?q=is%3Aissue+is%3Aclosed) 
+[![hf_paper](https://img.shields.io/badge/🤗-Paper%20In%20HF-red.svg)](https://huggingface.co/papers/)
+[![arXiv](https://img.shields.io/badge/Arxiv-xxx-AD1C18.svg?logo=arXiv)](https://arxiv.org/)
+<br>
+</h5> 
 
 ## 📰 News
-
+* **[2025.09.25]**  🔥🔥 Release [technical report](assets/report.pdf)!
+* **[2025.09.25]**  🚀🚀 Release MMR1-SFT (~16M) and MMR1-RL (15k) datasets!
+* **[2025.09.25]**  🚀🚀 Release MMR1-3B and MMR1-7B, 32B checkpoint are on the way!
 * **[2025.03.11]**  🔥🔥 Release MMR1-Math-v0-7B, achieving SOTA with only **6k public training data**!
-
 
 <!--## 🌟 Introduction-->
 <h2><img src="https://github.com/LengSicong/MMR1/blob/main/assets/logo.png?raw=true" width="25"> Introduction</h2>
-Introducing MMR1-Math-v0, a Large Multimodal Model specialized in mathematical tasks. Remarkably, MMR1-Math-v0 achieves state-of-the-art performance among open-source 7B multimodal models, competing effectively even against proprietary models with significantly larger parameter sizes—all trained using only 6k carefully curated data instances.
 
-### 💡 Key Highlights:
+This repo introduces our work on enhancing multimodal reasoning models. Current progress is limited by:  
 
-- **SOTA Performance**: Sets a new **state-of-the-art** benchmark on math-related multimodal tasks among open-source 7B models.
+- ❌ **Lack of open, large-scale, high-quality long chain-of-thought (CoT) data**  
+- ❌ **Instability of RL fine-tuning**, where standard GRPO often suffers from *gradient vanishing* under low reward variance  
 
-- **Minimal Training Data**: Remarkably achieves top-tier performance with just **6k** high-quality samples from **public training datasets**.
+### 🔑 Our Contributions  
+- **Variance-Aware Sampling (VAS):**  
+  A new data selection strategy guided by the *Variance Promotion Score (VPS)*. VAS combines outcome variance and trajectory diversity to promote reward variance, stabilize policy optimization, and improve convergence.  
 
-- **Efficient Training with GRPO**: 6 hours of RL training with 64 H100s for 15 epochs.
+- **Large-scale curated resources:**  
+  - ~1.6M long CoT cold-start trajectories with verified short answer
+  - ~15k RL QA pairs  
+  - Designed for **quality, difficulty, and diversity**  
 
-- **Public and High-Quality Data**: Publicly sourced datasets, rigorously filtered and balanced across both difficulty and mathematical problem types.
+- **Open-source codebase & models:**  
+  - Fully reproducible end-to-end training pipeline  
+  - Released models at multiple scales as standardized baselines for multimodal reasoning  
 
-- **Balanced Data Strategy**: Uniform sampling of data based on both task difficulty (filtering out overly simple problems) and mathematical reasoning diversity.
+Please refer to our [TRAIN.md](TRAIN.md) for detailed instructions on training with VAS.
 
+## 💡 Methodology Overview
+Our method introduces **Variance-Aware Sampling (VAS)** to address the *gradient vanishing problem* in reinforcement learning with Group Relative Policy Optimization (GRPO).  
 
-## ✅ Evaluation Results
+<p align="center">
+<img src="assets/fig1.png" alt="Overview of the VAS framework" width="700"/>
+</p>
 
-We evaluated our model using [VLMEvalKit](https://github.com/open-compass/VLMEvalKit/tree/main) on four mathematical reasoning benchmarks: MathVista_MINI, MathVision, LogicVista, and MathVerse_MINI.
+### 🔹 Framework  
+As illustrated in **Figure 1**, training begins with a pool of prompts from the dataset:  
+1. A **random sampler** provides uniform coverage of data.  
+2. A **weighted sampler**, guided by Variance Promotion Score (VPS), prioritizes prompts with higher reward variance and trajectory diversity.  
+3. These two sources are combined to form training batches, balancing exploration and coverage.  
+4. The policy model generates rollouts, which are evaluated with rewards and used to update the policy. VPS scores are periodically re-estimated as the model improves, ensuring dynamic adaptation.  
 
-We also include results on the MathVerse_MINI_Vision_Only_cot (MathVerse_V) subset to maintain consistency with the VLMEvalKit leaderboard. The table below compares our model's performance against various open-source and proprietary models.
+This design ensures that training consistently focuses on prompts that provide strong learning signals, while still maintaining sufficient randomness for coverage.  
 
-| Model | size | MathVista | MathVision | LogicVista | MathVerse_V | MathVerse |
-|-------|:----:|:--------------:|:----------:|:----------:|:--------------:|:-------------------:|
-| **Close-sourced** | | | | | | |
-| [GPT-4o 1120](https://openai.com/index/gpt-4o-system-card/)  | - | 60.0 | 31.2 | 52.8 | 40.6 | - |
-| [Gemini-2.0-flash](https://deepmind.google/technologies/gemini/flash/) | - | 70.4 | 43.6 | 52.3 | 47.8 | - |
-| [Claude3.7-Sonnet](https://www.anthropic.com/news/claude-3-7-sonnet) | - | 66.8 | 41.9 | 58.2 | 46.7 | - |
-| **R1-related** | | | | | | |
-| [LLaVA-CoT](https://github.com/PKU-YuanGroup/LLaVA-CoT) | 11B | 52.5 | 19.9 | 39.6 | 22.6 | - |
-| [Open-R1-Multimodal](https://github.com/EvolvingLMMs-Lab/open-r1-multimodal) | 7B | 60.6 | - | - | - | - |
-| [Mulberry](https://github.com/HJYao00/Mulberry) | 7B | 63.1 | - | - | - | - |
-| [LMM-R1](https://arxiv.org/abs/2503.07536) | 3B | 63.2 | 26.4 | - | - | 41.6 |
-| [R1-Onevision](https://github.com/Fancy-MLLM/R1-Onevision?tab=readme-ov-file) | 7B | - | 26.2 | - | - | 44.1 |
-| [MM-Eureka](https://github.com/ModalMinds/MM-EUREKA) | 8B | 67.1 | 22.2 | - | - | 40.4 |
-| [MM-Eureka](https://github.com/ModalMinds/MM-EUREKA) | 38B | 64.2 | 26.6 | - | - | 48.9 |
-| **Open-sourced** | | | | | | |
-| [Ovis2-8b](https://github.com/AIDC-AI/Ovis) | 8B | 71.8 | 25.9 | 39.4 | 42.3 | - |
-| [MiniCPM-o-2.6](https://github.com/OpenBMB/MiniCPM-o) | 8B | **71.9** | 21.7 | 36.0 | 35.0 | - |
-| [VITA-1.5](https://github.com/VITA-MLLM/VITA) | 7B | 66.2 | 19.5 | 38.9 | - | 23.4 |
-| [Qwen2.5-VL](https://github.com/QwenLM/Qwen2.5-VL) (official) | 7B | 68.2 | 25.4 | 47.9 | 41.1 | - |
-| [Qwen2.5-VL](https://github.com/QwenLM/Qwen2.5-VL) (reproduced) | 7B | 67.5 | 25.6 | 46.8 | 42.5 | 46.9 |
-| **Ours** | | | | | | |
-| **MMR1-math-v0** | 7B | 71.0 | **30.2** | **50.8** | **45.1** | **49.8** |
+<p align="center">
+<img src="assets/algo1.png" alt="algo" width="700"/>
+</p>
 
-### Ablation Studies
-To further examine the effectiveness of GRPO, we perform ablation experiments by comparing our model with two SFT-based variants. Specifically, we fine-tune Qwen2.5-VL-7B on the 6k dataset using direct answer supervision (Qwen2.5-VL-sft) and chain-of-thought supervision (Qwen2.5-VL-sft-cot). 
+### 🔹 Algorithm  
+**Algorithm 1** provides a step-by-step description of VAS within the GRPO framework:  
+- **Initialization:** For each prompt, multiple rollouts are sampled to estimate pass rate, outcome variance (OVS), trajectory diversity (TDS), and VPS.  
+- **Periodic VPS update:** At specified intervals, these statistics are refreshed to reflect the evolving policy.  
+- **Batch construction:** A mixture of prompts is drawn—some uniformly at random, others proportionally to VPS—controlled by the mixture ratio λ.  
+- **Policy optimization:** Rollouts are generated for the selected prompts, GRPO loss is computed, and the policy parameters are updated accordingly.  
 
-| Model | size | MathVista | MathVision | LogicVista | MathVerse | MathVerse_V |
-|-------|:----:|:--------------:|:----------:|:----------:|:--------------:|:-------------------:|
-| Qwen2.5-VL-sft | 7B | 52.2 | 27.0 | 31.8 | 20.7 | 24.7 |
-| Qwen2.5-VL-sft-cot | 7B | 54.7 | 23.4 | 33.8 | 23.7 | 25.7 |
-| **MMR1-math-v0** | 7B | 71.0 | **30.2** | **50.8** | **45.1** | **49.8** |
+By adaptively steering training toward prompts with higher reward variance, VAS effectively stabilizes optimization and amplifies gradient signals, enabling more efficient and robust learning.  
 
+## 📦 Open Resources
 
-## 🏫 Project Zoo
-| Project | Latest Model | Checkpoints | Data | Link |
-|-----------|--------------|-------|-----|-----------|
-| MMR1-Math | MMR1-Math-v0 | [![hf_space](https://img.shields.io/badge/🤗-7B-9C276A.svg)](https://huggingface.co/MMR1/MMR1-Math-v0-7B) | [![hf_space](https://img.shields.io/badge/🤗-data-9C276A.svg)](https://huggingface.co/datasets/MMR1/MMR1-Math-RL-Data-v0) | [🔗](https://github.com/LengSicong/MMR1/tree/main/MMR1-Math) |
-| MMR1-Science (coming soon!)| | | | |
+We release the following resources for the community:
+- [![hf_data](https://img.shields.io/badge/🤗-Dataset-9C276A.svg)](https://huggingface.co/datasets/MMR1/MMR1-SFT)**MMR1-SFT (~16M):**  Supervised fine-tuning dataset with 16M long CoT cold-start trajectories (Gemini2.5 Pro/Flash) with verified short answer (GPT-4o) 
+- [![hf_data](https://img.shields.io/badge/🤗-Dataset-9C276A.svg)](https://huggingface.co/datasets/MMR1/MMR1-RL)**MMR1-RL (15k):** RL dataset with 15k question-answer pairs (GPT-4o)
+- [![hf_checkpoint](https://img.shields.io/badge/🤗-Checkpoints-9C276A.svg)](https://huggingface.co/MMR1/MMR1-3B)**MMR1-3B:** 3B checkpoint trained with MMR1-SFT and MMR1-RL
+- [![hf_checkpoint](https://img.shields.io/badge/🤗-Checkpoints-9C276A.svg)](https://huggingface.co/MMR1/MMR1-7B)**MMR1-7B:** 7B checkpoint trained with MMR1-SFT and MMR1-RL
+- [![hf_checkpoint](https://img.shields.io/badge/🤗-Checkpoints-9C276A.svg)](https://huggingface.co/MMR1/MMR1-32B)**MMR1-32B:** 32B checkpoint trained with MMR1-SFT and MMR1-RL
 
+<p align="center">
+<img src="assets/data.png" alt="data" width="700"/>
+</p>
 
-## 💪 TODO
-This project is under active development. Stay tuned for our upcoming updates! 
-- [ ] Release data composition and preprocessing scripts.
-- [ ] Release GRPO training scripts.
-- [ ] Cold-start before RL training. Both dataset and checkpoint for cold-start will be released soon.
-- [ ] More efficient GRPO training recipes. (Coming soon)
-- [ ] More model sizes and variants.
+The dataset spans diverse domains—including mathematics, science, charts/figures, document tables, and general understanding—covering ~1.6M math samples and an additional ~37K samples across other domains. It integrates existing public resources (e.g., MathVerse, ScienceQA, ChartQA, DocVQA, GQA) together with newly curated and self-collected data, ensuring quality, difficulty, and diversity. This collection establishes one of the most comprehensive open resources for multimodal reasoning models.
+We hope these resources can serve as a benchmark for the community and facilitate the research of multimodal reasoning.
 
+## 📊 Evaluation Results  
 
+We evaluate our models on a suite of **mathematics-related multimodal reasoning benchmarks** (MathVerse, MathVista, MathVision, LogicVista, and ChartQA).  
 
+<p align="center">
+<img src="assets/result.png" alt="result" width="700"/>
+</p>
 
-## 🛠️ Requirements and Installation
+- **MMR1-7B** achieves an average score of **58.4**, establishing new state-of-the-art performance among 7B-scale reasoning models.  
+- **MMR1-3B** performs competitively with **52.7**, showing strong reasoning ability even at smaller scale.  
+- Our models consistently outperform or match larger baselines, demonstrating the effectiveness of **Variance-Aware Sampling (VAS)** and our curated **long CoT training data**.  
 
-Basic Dependencies:
+## 🔍 Analysis of VAS Training Dynamics  
 
-* Python >= 3.10
-* transformers>=4.49.0
-* flash-attn>=2.4.3
-* vllm>=0.7.3
+We further analyze the effectiveness of **Variance-Aware Sampling (VAS)** through training efficiency and the evolution of **Variance Promotion Score (VPS)**.  
 
-Install required packages:
+<p align="center">
+<img src="assets/anal1.png" alt="anal1" width="700"/>
+</p>    
 
-```bash
-pip install -r requirements.txt
-```
+**Training Efficiency (Fig. 2).**  
+- **Gradient norm**: VAS substantially amplifies gradient magnitudes compared to the vanilla baseline, mitigating the gradient vanishing issue. This indicates that VAS consistently provides stronger optimization signals.  
+- **Clip fraction**: Higher clipping fractions in VAS runs suggest that policy updates are closer to the trust-region boundary, enabling more effective utilization of the learning signal without destabilizing training.  
+- **Validation accuracy**: Both full VAS (λ = 1.0) and mixed VAS–random sampling (λ = 0.5) converge faster and achieve higher final accuracy than the baseline, demonstrating that VAS improves both efficiency and performance. Notably, the mixed strategy achieves competitive results while maintaining broader data coverage.  
 
-## 🤖 Inference
-Here we show a code snippet to show you how to use MMR1-Math with `transformers` and `qwen_vl_utils`:
+<p align="center">
+<img src="assets/anal2.png" alt="anal2" width="700"/>
+</p>
 
-```python
-from transformers import Qwen2_5_VLForConditionalGeneration, AutoTokenizer, AutoProcessor
-from qwen_vl_utils import process_vision_info
-# default: Load the model on the available device(s)
-model = Qwen2_5_VLForConditionalGeneration.from_pretrained(
-    "MMR1/MMR1-Math-v0-7B", 
-    torch_dtype=torch.bfloat16,
-    attn_implementation="flash_attention_2",
-    device_map="auto",
-)
-# default processer
-processor = AutoProcessor.from_pretrained("MMR1/MMR1-Math-v0-7B")
-# Example input
-messages = [
-    {
-        "role": "user",
-        "content": [
-            {
-                "type": "image",
-                "image": "path/to/image.jpeg",
-            },
-            {"type": "text", "text": "Describe this image."},
-        ],
-    }
-]
-# Preparation for inference
-text = processor.apply_chat_template(
-    messages, tokenize=False, add_generation_prompt=True
-)
-image_inputs, video_inputs = process_vision_info(messages)
-inputs = processor(
-    text=[text],
-    images=image_inputs,
-    videos=video_inputs,
-    padding=True,
-    return_tensors="pt",
-)
-inputs = inputs.to("cuda")
-# Inference: Generation of the output
-generated_ids = model.generate(**inputs, max_new_tokens=128)
-generated_ids_trimmed = [
-    out_ids[len(in_ids) :] for in_ids, out_ids in zip(inputs.input_ids, generated_ids)
-]
-output_text = processor.batch_decode(
-    generated_ids_trimmed, skip_special_tokens=True, clean_up_tokenization_spaces=False
-)
-print(output_text)
-```
-<details>
-<summary>Batch inference</summary>
+**VPS Dynamics (Fig. 3).**  
+- **Score distribution**: VPS distributions evolve from relatively uniform at the beginning of training to more concentrated in the middle bins, suggesting convergence in identifying consistently informative prompts.  
+- **Weight transitions**: Transition matrices show that many prompts shift across bins over time, with both upward and downward movements, reflecting the dynamic nature of reward variance as the policy evolves. Early transitions are more widespread, while later updates become more stable, consistent with convergence.  
+- **Interpretation**: This dynamic reweighting ensures that the model continually prioritizes prompts with higher variance while still allowing redistribution as learning progresses, preventing overfitting to a static subset of data.  
 
-```python
-# Sample messages for batch inference
-messages1 = [
-    {
-        "role": "user",
-        "content": [
-            {"type": "image", "image": "file:///path/to/image1.jpg"},
-            {"type": "image", "image": "file:///path/to/image2.jpg"},
-            {"type": "text", "text": "What are the common elements in these pictures?"},
-        ],
-    }
-]
-messages2 = [
-    {"role": "system", "content": "You are a helpful assistant."},
-    {"role": "user", "content": "Who are you?"},
-]
-# Combine messages for batch processing
-messages = [messages1, messages2]
-# Preparation for batch inference
-texts = [
-    processor.apply_chat_template(msg, tokenize=False, add_generation_prompt=True)
-    for msg in messages
-]
-image_inputs, video_inputs = process_vision_info(messages)
-inputs = processor(
-    text=texts,
-    images=image_inputs,
-    videos=video_inputs,
-    padding=True,
-    return_tensors="pt",
-)
-inputs = inputs.to("cuda")
-# Batch Inference
-generated_ids = model.generate(**inputs, max_new_tokens=128)
-generated_ids_trimmed = [
-    out_ids[len(in_ids) :] for in_ids, out_ids in zip(inputs.input_ids, generated_ids)
-]
-output_texts = processor.batch_decode(
-    generated_ids_trimmed, skip_special_tokens=True, clean_up_tokenization_spaces=False
-)
-print(output_texts)
-```
-</details>
+👉 Together, these analyses highlight how **VAS effectively mitigates gradient vanishing, improves sample efficiency, and adapts dynamically to the evolving training landscape.**
 
+## 🎨 Qualitative Demo
 
-## 🗝️ Training
-Coming soon!
+To illustrate the reasoning capability of our models, we provide qualitative examples from **MathVerse**.  
+The demo showcases how the model carefully analyzes the problem, plans a structured solution, executes step-by-step reasoning, verifies results, and even provides alternative solution paths.  
 
+<p align="center">
+<img src="assets/demo.png" alt="demo" width="700"/>
+</p>
+
+This demonstrates the model’s ability to maintain logical consistency, perform reflective verification, and present human-readable reasoning traces.
 
 ## 🤝 Contribution and Contact
 This project is still under active development. Community feedback and contributions are highly appreciated. If you want to contribute, please feel free to make a pull request or create an issue.

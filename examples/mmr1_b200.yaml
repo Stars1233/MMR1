@@ -1,0 +1,108 @@
+data:
+  train_files: mm-o1/0424_rl_pub_tiku_10k@train 
+  val_files: mm-o1/math_vista_val 
+  prompt_key: problem
+  answer_key: answer
+  image_key: images
+  max_prompt_length: 2048
+
+  max_response_length: 8192
+  rollout_batch_size: 2048 # increased from 512
+  # rollout_micro_batch_size: 128
+
+  val_batch_size: -1
+  shuffle: true
+  seed: 1
+  max_pixels: 1048576
+  min_pixels: 7056
+  sampling_strategy: curriculum  #Options: "shuffle", "sequential", "curriculum"
+  curriculum_momentum: 0.0  # Only used when sampling_strategy is "curriculum", 1 means no momentum
+  curriculum_metrics:
+    - learnability
+  curriculum_metric_weights:
+    - 1.0
+  curriculum_update_freq: 4  # Update curriculum weights every N steps (0 means epoch-level updates)
+  curriculum_mixture_ratio: 0.5  # Ratio of weighted samples in each batch (0.0 to 1.0)
+  curriculum_rollout_n: 8  # Number of rollouts to generate for each prompt
+  curriculum_rollout_batch_size: 512 # increased from 4096
+
+algorithm:
+  adv_estimator: grpo
+  disable_kl: false
+  use_kl_loss: true
+  kl_penalty: low_var_kl
+  kl_coef: 1.0e-2
+
+worker:
+  actor:
+    global_batch_size: 512 # increased from 128
+    micro_batch_size_per_device_for_update: 8 # increased from 1
+    micro_batch_size_per_device_for_experience: 64 # increased from 4
+    max_grad_norm: 1.0
+    padding_free: true
+    ulysses_sequence_parallel_size: 1
+    model:
+      model_path: # path to our checkpoint
+      enable_gradient_checkpointing: true
+      trust_remote_code: false
+      freeze_vision_tower: false
+    optim:
+      lr: 1.0e-6
+      weight_decay: 1.0e-2
+      strategy: adamw  # {adamw, adamw_bf16}
+      lr_warmup_ratio: 0.0
+    fsdp:
+      fsdp_size: 8
+      enable_full_shard: true
+      enable_cpu_offload: false
+      enable_rank0_init: true
+    offload:
+      offload_params: false
+      offload_optimizer: false
+
+  rollout:
+    temperature: 0.6
+    n: 8
+    gpu_memory_utilization: 0.75
+    enforce_eager: false
+    enable_chunked_prefill: false
+    tensor_parallel_size: 1
+    limit_images: 0
+    val_override_config:
+      temperature: 0.5
+      n: 1
+    max_num_batched_tokens: 196608 # increased from 32768
+
+  ref:
+    fsdp:
+      enable_full_shard: true
+      enable_cpu_offload: false
+      enable_rank0_init: true
+    offload:
+      offload_params: false
+
+  reward:
+    reward_type: function
+    compute_score: openr1_wo_LMM
+    batch_processing: true
+    cos_len_reward_config: # [-1.0,-0.5,0.5,1.0]
+      min_value_wrong: 0.0
+      max_value_wrong: 0.0
+      min_value_correct: 0.0
+      max_value_correct: 0.0
+
+trainer:
+  total_episodes: 10
+  logger: ["console", "wandb"]
+  project_name: easyr1
+  experiment_name: default # use your own experiment name
+  n_gpus_per_node: 8
+  nnodes: 1
+  val_freq: 4  # -1 to disable
+  val_before_train: true # set to true when real train
+  val_only: false
+  val_generations_to_log: 10
+  save_freq: 5   # -1 to disable
+  save_limit: 10  # -1 to disable
+  save_checkpoint_path: null
+  load_checkpoint_path: null

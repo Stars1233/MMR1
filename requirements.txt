@@ -1,7 +1,6 @@
 accelerate
 codetiming
 datasets
-flash-attn>=2.4.3
 liger-kernel
 mathruler
 numpy
@@ -12,9 +11,17 @@ pillow
 pyarrow>=15.0.0
 pylatexenc
 qwen-vl-utils
-ray
+ray[default]
 tensordict
 torchdata
-transformers>=4.49.0
-vllm>=0.7.3
+transformers==4.51.2
+vllm==0.8.4
 wandb
+tenacity
+math_verify
+jieba
+nltk
+Levenshtein
+tensorboard
+torch==2.6.0
+flash-attn @ https://github.com/Dao-AILab/flash-attention/releases/download/v2.7.3/flash_attn-2.7.3+cu12torch2.6cxx11abiFALSE-cp310-cp310-linux_x86_64.whl
