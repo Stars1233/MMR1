@@ -9,8 +9,8 @@ MMR1: Enhancing Multimodal Reasoning with Variance-Aware Sampling and Open Resou
 
 <h5 align="center">
 
-[![hf_data](https://img.shields.io/badge/🤗-Dataset-9C276A.svg)](https://huggingface.co/datasets/MMR1/MMR1-Math-RL-Data-v0)
-[![hf_checkpoint](https://img.shields.io/badge/🤗-Checkpoints-9C276A.svg)](https://huggingface.co/MMR1/MMR1-Math-v0-7B) 
+[![hf_data](https://img.shields.io/badge/🤗-Dataset-9C276A.svg)](https://huggingface.co/MMR1/datasets)
+[![hf_checkpoint](https://img.shields.io/badge/🤗-Checkpoints-9C276A.svg)](https://huggingface.co/MMR1/models) 
 [![License](https://img.shields.io/badge/License-Apache%202.0-yellow)](https://github.com/LengSicong/MMR1/blob/main/LICENSE) <br>
 [![Hits](https://hits.seeyoufarm.com/api/count/incr/badge.svg?url=https%3A%2F%2Fgithub.com%2FLengSicong%2FMMR1&count_bg=%2379C83D&title_bg=%23555555&icon=&icon_color=%23E7E7E7&title=Visitor&edge_flat=false)](https://hits.seeyoufarm.com)
 [![GitHub issues](https://img.shields.io/github/issues/LengSicong/MMR1?color=critical&label=Issues)](https://github.com/LengSicong/MMR1/issues?q=is%3Aopen+is%3Aissue)
@@ -83,9 +83,13 @@ By adaptively steering training toward prompts with higher reward variance, VAS 
 We release the following resources for the community:
 - [![hf_data](https://img.shields.io/badge/🤗-Dataset-9C276A.svg)](https://huggingface.co/datasets/MMR1/MMR1-SFT)**MMR1-SFT (~16M):**  Supervised fine-tuning dataset with 16M long CoT cold-start trajectories (Gemini2.5 Pro/Flash) with verified short answer (GPT-4o) 
 - [![hf_data](https://img.shields.io/badge/🤗-Dataset-9C276A.svg)](https://huggingface.co/datasets/MMR1/MMR1-RL)**MMR1-RL (15k):** RL dataset with 15k question-answer pairs (GPT-4o)
-- [![hf_checkpoint](https://img.shields.io/badge/🤗-Checkpoints-9C276A.svg)](https://huggingface.co/MMR1/MMR1-3B)**MMR1-3B:** 3B checkpoint trained with MMR1-SFT and MMR1-RL
-- [![hf_checkpoint](https://img.shields.io/badge/🤗-Checkpoints-9C276A.svg)](https://huggingface.co/MMR1/MMR1-7B)**MMR1-7B:** 7B checkpoint trained with MMR1-SFT and MMR1-RL
-- [![hf_checkpoint](https://img.shields.io/badge/🤗-Checkpoints-9C276A.svg)](https://huggingface.co/MMR1/MMR1-32B)**MMR1-32B:** 32B checkpoint trained with MMR1-SFT and MMR1-RL
+- [![hf_checkpoint](https://img.shields.io/badge/🤗-Checkpoints-9C276A.svg)](https://huggingface.co/MMR1/MMR1-3B-SFT)**MMR1-3B-SFT:** 3B checkpoint trained with MMR1-SFT
+- [![hf_checkpoint](https://img.shields.io/badge/🤗-Checkpoints-9C276A.svg)](https://huggingface.co/MMR1/MMR1-3B-RL)**MMR1-3B-RL:** 3B checkpoint trained with MMR1-SFT and MMR1-RL
+- [![hf_checkpoint](https://img.shields.io/badge/🤗-Checkpoints-9C276A.svg)](https://huggingface.co/MMR1/MMR1-7B-SFT)**MMR1-7B-SFT:** 7B checkpoint trained with MMR1-SFT
+- [![hf_checkpoint](https://img.shields.io/badge/🤗-Checkpoints-9C276A.svg)](https://huggingface.co/MMR1/MMR1-7B-RL)**MMR1-7B-RL:** 7B checkpoint trained with MMR1-SFT and MMR1-RL
+- [![hf_checkpoint](https://img.shields.io/badge/🤗-Checkpoints-9C276A.svg)](https://huggingface.co/MMR1/MMR1-32B-SFT)**MMR1-32B-SFT:** 32B checkpoint trained with MMR1-SFT
+- [![hf_checkpoint](https://img.shields.io/badge/🤗-Checkpoints-9C276A.svg)](https://huggingface.co/MMR1/MMR1-232B-RL)**MMR1-32B-RL:** 32B checkpoint trained with MMR1-SFT and MMR1-RL (On the way!)
+
 
 <p align="center">
 <img src="assets/data.png" alt="data" width="700"/>
