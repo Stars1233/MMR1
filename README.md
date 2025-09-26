@@ -4,20 +4,20 @@
 
 <h3 align="center"><a href="https://arxiv.org/" style="color:#9C276A">
 MMR1: Enhancing Multimodal Reasoning with Variance-Aware Sampling and Open Resources</a></h3>
-<h5 align="center"> If our project helps you, please give us a star ⭐ on GitHub to support us. 🙏🙏 </h2>
+<h5 align="center"> If our project helps you, please give us a star ⭐ on GitHub and upvote our HF paper to support us. 🙏🙏 </h2>
 
 
 <h5 align="center">
 
 [![hf_data](https://img.shields.io/badge/🤗-Dataset-9C276A.svg)](https://huggingface.co/MMR1/datasets)
 [![hf_checkpoint](https://img.shields.io/badge/🤗-Checkpoints-9C276A.svg)](https://huggingface.co/MMR1/models) 
-[![hf_paper](https://img.shields.io/badge/🤗-Paper%20In%20HF-red.svg)](https://huggingface.co/papers/)
-[![arXiv](https://img.shields.io/badge/Arxiv-xxx-AD1C18.svg?logo=arXiv)](https://arxiv.org/)
+[![hf_paper](https://img.shields.io/badge/🤗-Paper%20In%20HF-red.svg)](https://huggingface.co/papers/2509.21268)
+[![arXiv](https://img.shields.io/badge/Arxiv-xxx-AD1C18.svg?logo=arXiv)](https://arxiv.org/abs/2509.21268)
 <br>
 </h5> 
 
 ## 📰 News
-* **[2025.09.25]**  🔥🔥 Release [technical report](assets/report.pdf)!
+* **[2025.09.25]**  🔥🔥 Release [technical report](https://huggingface.co/papers/2509.21268)!
 * **[2025.09.25]**  🚀🚀 Release MMR1-SFT (~16M) and MMR1-RL (15k) datasets!
 * **[2025.09.25]**  🚀🚀 Release MMR1-3B and MMR1-7B, 32B checkpoint are on the way!
 * **[2025.03.11]**  🔥🔥 Release MMR1-Math-v0-7B, achieving SOTA with only **6k public training data**!
