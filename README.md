@@ -12,7 +12,7 @@ MMR1: Enhancing Multimodal Reasoning with Variance-Aware Sampling and Open Resou
 [![hf_data](https://img.shields.io/badge/🤗-Dataset-9C276A.svg)](https://huggingface.co/MMR1/datasets)
 [![hf_checkpoint](https://img.shields.io/badge/🤗-Checkpoints-9C276A.svg)](https://huggingface.co/MMR1/models) 
 [![hf_paper](https://img.shields.io/badge/🤗-Paper%20In%20HF-red.svg)](https://huggingface.co/papers/2509.21268)
-[![arXiv](https://img.shields.io/badge/Arxiv-xxx-AD1C18.svg?logo=arXiv)](https://arxiv.org/abs/2509.21268)
+[![arXiv](https://img.shields.io/badge/Arxiv-2509.21268-AD1C18.svg?logo=arXiv)](https://arxiv.org/abs/2509.21268)
 <br>
 </h5> 
 
