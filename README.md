@@ -145,8 +145,6 @@ This demonstrates the model’s ability to maintain logical consistency, perform
 ## 🤝 Contribution and Contact
 This project is still under active development. Community feedback and contributions are highly appreciated. If you want to contribute, please feel free to make a pull request or create an issue.
 
-If you have any questions or would like to engage with our community, feel free to scan the QR code below to join our WeChat group.
-
 
 ## 👍 Acknowledgement
 Our MMR1 is build on top of [Qwen2.5VL](https://github.com/QwenLM/Qwen2.5-VL), [LLaMA-Factory](https://github.com/hiyouga/LLaMA-Factory) and [EasyR1](https://github.com/hiyouga/EasyR1/tree/main).
