@@ -184,11 +184,14 @@ Besides, our MMR1 benefits from tons of open-source efforts. We sincerely apprec
 If you find MMR1 useful for your research and applications, please cite using this BibTeX:
 
 ```bibtex
-@misc{MMR1-Math2025,
-  title={MMR1: Advancing the Frontiers of Multimodal Reasoning},
-  author={Sicong Leng*, Jing Wang*, Jiaxi Li*, Hao Zhang*, Zhiqiang Hu, Boqiang Zhang, Hang Zhang, Yuming Jiang, Xin Li, Deli Zhao, Fan Wang, Yu Rong, Aixin Sun†, Shijian Lu†},
+@misc{leng2025mmr1,
+  title={MMR1: Enhancing Multimodal Reasoning with Variance-Aware Sampling and Open Resources}, 
+  author={Sicong Leng and Jing Wang and Jiaxi Li and Hao Zhang and Zhiqiang Hu and Boqiang Zhang and Yuming Jiang and Hang Zhang and Xin Li and Lidong Bing and Deli Zhao and Wei Lu and Yu Rong and Aixin Sun and Shijian Lu},
   year={2025},
-  howpublished={\url{https://github.com/LengSicong/MMR1}},
+  eprint={2509.21268},
+  archivePrefix={arXiv},
+  primaryClass={cs.CV},
+  url={https://arxiv.org/abs/2509.21268}, 
 }
 ```
 
