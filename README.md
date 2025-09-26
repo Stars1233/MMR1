@@ -20,6 +20,7 @@ MMR1: Enhancing Multimodal Reasoning with Variance-Aware Sampling and Open Resou
 * **[2025.09.25]**  🔥🔥 Release [technical report](https://huggingface.co/papers/2509.21268)!
 * **[2025.09.25]**  🚀🚀 Release MMR1-SFT (~16M) and MMR1-RL (15k) datasets!
 * **[2025.09.25]**  🚀🚀 Release MMR1-3B and MMR1-7B, 32B checkpoint are on the way!
+* **[2025.09.25]**  Old repo are now moved to the branch [mmr1_v0](https://github.com/LengSicong/MMR1/tree/mmr1_v0?tab=readme-ov-file).
 * **[2025.03.11]**  🔥🔥 Release MMR1-Math-v0-7B, achieving SOTA with only **6k public training data**!
 
 <!--## 🌟 Introduction-->
